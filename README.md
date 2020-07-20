@@ -1,2 +1,2 @@
 # vue-source
-学习vue源码
+学习vue 2.6 源码
