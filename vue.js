@@ -87,7 +87,6 @@ var isBuiltInTag = makeMap('slot, component', true)
 
 var isReserved = makeMap('key,ref,slot,slot-scope,is')
 
-// 为什么需要return
 function remove (arr, item) {
   if (arr.length) {
     var index = arr.indexOf(item)
@@ -102,7 +101,6 @@ function hasOwn (obj, key) {
   return hasOweProperty.call(obj, key)
 }
 
-// 为什么需要缓存函数结果值
 function cached (fn) {
   var cache = Object.create(null)
   return (
@@ -113,4 +111,13 @@ function cached (fn) {
   )
 }
 
-  
+var camelizeRE = /-(\w)/g
+var camlize = cached(function (str) {
+  return str.replace(camelizeRE, function (_, c) { return c ? c.toUpperCase() : '' })
+})
+
+var capitalize = cached(function (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+})
+
+
