@@ -146,3 +146,59 @@ var bind = Function.prototype.bind
   ? nativeBind
   : polyfillBind;
 
+/**
+ * Convert an Array-like object to a real Array.
+ */
+function toArray (list, start) {
+  start = start || 0
+  var i = list.length - start
+  var ret = new Array(i)
+  while (i--) {
+    ret[i] = list[i + start]
+  }
+  return ret
+}
+
+/**
+ * Mix properties into target object
+ */
+function extend (to, _from) {
+  for (var key in _from) {
+    to[key] = _from[key]
+  }
+  return to
+}
+
+/**
+ * Merge an Array of Objects to a single Object.
+ */
+function toObject (arr) {
+  var res = {}
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      extend(res, arr[i])
+    }
+  }
+  return res
+}
+
+function noop (a, b, c) { }
+
+/**
+ * Always return false
+ */
+function no (a, b, c) { return false }
+
+/**
+ * Return the same value.
+ */
+ function identity (_) { return _ }
+
+ /**
+  * Generate a string containing static keys from compiler modules.
+  */
+function genStaticKeys (modules) {
+  return modules.reduce(function (keys, m) {
+    return keys.concat(m.staticKeys || [])
+  }, []).join(',')
+}
