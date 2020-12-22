@@ -259,3 +259,6 @@ function once (fn) {
     }
   }
 }
+
+
+console.log(111)
